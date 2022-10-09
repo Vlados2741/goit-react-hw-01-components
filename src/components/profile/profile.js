@@ -14,6 +14,7 @@ import {
 
 
 export function Profile({ username, tag, location, avatar, stats }) {
+  const { followers, views, likes } = stats;
   return (
     <ProfileContainer>
       <ProfileDescription>
@@ -28,15 +29,15 @@ export function Profile({ username, tag, location, avatar, stats }) {
       <ProfileStats>
         <StatsFollowers>
           <StatsLabel>Followers</StatsLabel>
-          <span>{stats.followers}</span>
+          <span>{followers}</span>
         </StatsFollowers>
         <StatsViews>
           <StatsLabel>Views</StatsLabel>
-          <span>{stats.views}</span>
+          <span>{views}</span>
         </StatsViews>
         <StatsLikes>
           <StatsLabel>Likes</StatsLabel>
-          <span>{stats.likes}</span>
+          <span>{likes}</span>
         </StatsLikes>
       </ProfileStats>
     </ProfileContainer>
@@ -48,5 +49,9 @@ Profile.propTypes = {
   tag: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
-  stats: PropTypes.object.isRequired,
+  stats: PropTypes.shape({
+    followers: PropTypes.number,
+    views: PropTypes.number,
+    likes: PropTypes.number
+  }).isRequired,
 };
